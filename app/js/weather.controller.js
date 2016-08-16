@@ -17,15 +17,21 @@
 
         vm.submitCity = submitCity;
 
-        function submitCity(){
-            weatherFactory.getWeather(vm.cityName)
+        function submitCity(cityName, addToHistory) {
+            weatherFactory.getWeather(cityName)
             .then(function(data){
                 vm.weatherInfo = data;
-                vm.searchItem.cityName = vm.cityName;
-                vm.searchItem.timeStamp = Date.now();
-                vm.searchHistory.push(angular.copy(vm.searchItem));
                 vm.cityName = '';
+                if(addToHistory) {
+                    addToSearchHistory(cityName);
+                }
             });
+        }
+
+        function addToSearchHistory(cityName) {
+            vm.searchItem.cityName = cityName;
+            vm.searchItem.timeStamp = Date.now();
+            vm.searchHistory.push(angular.copy(vm.searchItem));
         }
     }
 })();
