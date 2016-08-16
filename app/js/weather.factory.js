@@ -10,9 +10,11 @@
         //storing API key as variable for easy changing later
         var appID = '8922015c9605f6193b555a64bbaef53e';
 
-        return{
+        var service =  {
             getWeather : getWeather
         };
+
+        return service;
 
         // actual API call, using imperial units and substring seraching (type=like)
        function getWeather(city){
