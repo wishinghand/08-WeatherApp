@@ -13,18 +13,21 @@
         };
 
        function getWeather(city){
-            return $http.get('http://api.openweathermap.org/data/2.5/weather?q=' + city + "&APPID=" + appID + "&units=imperial")
+            return $http.get('http://api.openweathermap.org/data/2.5/weather?q=' + city + "&APPID=" + appID + "&units=imperial&type=like")
             .then(weatherSuccess)
             .catch(weatherFail);
         }
 
         function weatherSuccess(response){
-            console.log(response.data);
+            if(response.data.cod === '404'){
+                toastr.error('There was an error in getting the weather. Please check your city name and try again.');
+                return;
+            }
             return response.data;
         }
 
         function weatherFail(error){
-            toastr.error('There was an error: ' + error.statusText + ". Please try again in a few moments.");
+            toastr.error('There was an error in getting the weather. Please try again in a few moments.');
         }
     }
 

@@ -9,19 +9,27 @@
     function weatherController(weatherFactory){
         /* jshint validthis: true */
         var vm = this;
-        //return data object
-        vm.weatherInfo = {};
         vm.cityName = '';
+        vm.loaded = false;
+
+        //return data object
+        vm.weatherInfo;
         vm.searchHistory = [];
         vm.searchItem = {};
+        vm.loaded = false;
 
         vm.submitCity = submitCity;
 
         function submitCity(cityName, addToHistory) {
-            weatherFactory.getWeather(cityName)
+            vm.loading = true;
+            weatherFactory.getWeather(cityName, addToHistory)
             .then(function(data){
+                if(data.cod === '404'){
+                    addToHistory = false;
+                }
                 vm.weatherInfo = data;
                 vm.cityName = '';
+                vm.loaded = true;
                 if(addToHistory) {
                     addToSearchHistory(cityName);
                 }

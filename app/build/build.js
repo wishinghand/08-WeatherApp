@@ -824,19 +824,24 @@ angular.module('weatherApp', ['toastr']);
     function weatherController(weatherFactory){
         /* jshint validthis: true */
         var vm = this;
-        //return data object
-        vm.weatherInfo = {};
         vm.cityName = '';
+        vm.loaded = false;
+
+        //return data object
+        vm.weatherInfo;
         vm.searchHistory = [];
         vm.searchItem = {};
+        vm.loaded = false;
 
         vm.submitCity = submitCity;
 
         function submitCity(cityName, addToHistory) {
+            vm.loading = true;
             weatherFactory.getWeather(cityName)
             .then(function(data){
                 vm.weatherInfo = data;
                 vm.cityName = '';
+                vm.loaded = true;
                 if(addToHistory) {
                     addToSearchHistory(cityName);
                 }
@@ -865,18 +870,21 @@ angular.module('weatherApp', ['toastr']);
         };
 
        function getWeather(city){
-            return $http.get('http://api.openweathermap.org/data/2.5/weather?q=' + city + "&APPID=" + appID + "&units=imperial")
+            return $http.get('http://api.openweathermap.org/data/2.5/weather?q=' + city + "&APPID=" + appID + "&units=imperial&type=like")
             .then(weatherSuccess)
             .catch(weatherFail);
         }
 
         function weatherSuccess(response){
-            console.log(response.data);
+            if(response.data.cod === '404'){
+                toastr.error('There was an error in getting the weather. Please check your city name and try again.');
+                return;
+            }
             return response.data;
         }
 
         function weatherFail(error){
-            toastr.error('There was an error: ' + error.statusText + ". Please try again in a few moments.");
+            toastr.error('There was an error in getting the weather. Please try again in a few moments.');
         }
     }
 

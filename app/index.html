@@ -3,14 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>Whether the Weather</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- inject:css -->
     <link rel="stylesheet" href="build/build.css">
     <!-- endinject -->
 </head>
 <body ng-controller="weatherController as wc" >
-    <div class="inputContainer">
+    <main class="inputContainer">
         <section>
-            <h1 class="flow-text">Whether the Weather</h1>
+            <h1>Whether the Weather  <i class="medium material-icons">cloud_queue</i></h1>
         </section>
 
         <section>
@@ -31,17 +32,19 @@
             </form>
         </section>
 
-        <section class="row">
-            <div class="col s4 offset-s1">
-                <h2  class="flow-text">Weather Info for {{wc.weatherInfo.name}}</h2>
+        <section class="row" ng-hide="wc.weatherInfo === undefined">
+            <div class="col m4 offset-m1" ng-show="wc.loaded">
+                <h2 class="flow-text">Weather Info for <strong>{{wc.weatherInfo.name}}</strong></h2 class="flow-text">
+                <p>Latitude/Longitude: {{wc.weatherInfo.coord.lat}} / {{wc.weatherInfo.coord.lon}}</p>
                 <p>Temperature: {{wc.weatherInfo.main.temp}} °F</p>
-                <p>Pressure (hPa): {{wc.weatherInfo.main.pressure | number}}</p>
+                <p>Pressure: {{wc.weatherInfo.main.pressure | number}} (hPa)</p>
                 <p>Humidity: {{wc.weatherInfo.main.humidity}}%</p>
                 <p>Lowest Temp: {{wc.weatherInfo.main.temp_min}} °F</p>
                 <p>Highest Temp: {{wc.weatherInfo.main.temp_max}} °F</p>
-                <p>Wind Speed (MPH): {{wc.weatherInfo.wind.speed}}</p>
+                <p>Wind Speed: {{wc.weatherInfo.wind.speed}} (MPH)</p>
             </div>
-            <div class="col s4 offset-s2">
+
+            <div class="col m4 offset-m2">
                 <h2 class="flow-text">Search History</h2>
                 <table ng-repeat="search in wc.searchHistory" class="bordered highlight">
                     <tr>
@@ -51,17 +54,17 @@
                 </table>
             </div>
         </section>
-    </div>
+    </main>
     <footer class="page-footer brown lighten-5">
       <div class="container">
         <div class="row">
           <div class="col l12 s12">
-            <p class="white-text text-lighten-4"><strong><a href="https://github.com/wishinghand/08-WeatherApp">Local Weather App</a></strong> built by <a href="http://qobbler.com">Jason Land</a> and <a href="https://github.com/sebastianleon">Sebastian Leon</a>.</p>
+            <p class="black-text text-lighten-4"><strong><a href="https://github.com/wishinghand/08-WeatherApp">Local Weather App</a></strong> built by <a href="http://qobbler.com">Jason Land</a> and <a href="https://github.com/sebastianleon">Sebastian Leon</a>.</p>
           </div>
         </div>
       </div>
       <div class="footer-copyright">
-        <div class="container">
+        <div class="container black-text">
         The source code is licensed
             <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. The website content
             is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC ANS 4.0</a>.
