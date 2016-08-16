@@ -13,15 +13,20 @@
     </section>
 
     <section>
-        <!-- <form action="javascript:void(0);" ng-submit="wc.submitCity()"> -->
-        <form action="javascript:void(0);">
-            <button ng-click="wc.cityName='New York'" class=" waves-effect waves-light btn">New York</button>
-            <button ng-click="wc.cityName='San Diego'" class="btn waves-effect waves-light">San Diego</button>
-            <button ng-click="wc.cityName='District of Columbia'" class="btn waves-effect waves-light">Washington D.C.</button>
-            <button ng-click="wc.cityName='Pittsburgh'" class="btn waves-effect waves-light">Pittsburgh</button>
-            <button ng-click="wc.cityName='Honolulu'" class="btn waves-effect waves-light">Honolulu</button>
-            <input placeholder="Enter a City" type="text" ng-keydown="$event.which === 13 && wc.submitCity()" ng-model="wc.cityName">
-            <button type="submit" class="btn" ng-click="wc.submitCity()">Check Weather</button>
+            <!-- preset button -->
+        <button ng-click="wc.cityName='New York'" class=" waves-effect waves-light btn">New York</button>
+        <button ng-click="wc.cityName='San Diego'" class="btn waves-effect waves-light">San Diego</button>
+        <button ng-click="wc.cityName='District of Columbia'" class="btn waves-effect waves-light">Washington D.C.</button>
+        <button ng-click="wc.cityName='Pittsburgh'" class="btn waves-effect waves-light">Pittsburgh</button>
+        <button ng-click="wc.cityName='Honolulu'" class="btn waves-effect waves-light">Honolulu</button>
+
+        <form action="javascript:void(0);" name="weatherSearch" ng-submit="wc.submitCity(wc.cityName, true)">
+
+            <!-- text input -->
+            <input placeholder="Enter a City" type="text" ng-model="wc.cityName">
+
+            <!-- submit button -->
+            <button type="submit" class="btn">Check Weather</button>
         </form>
     </section>
 
@@ -39,7 +44,7 @@
             <h2>Search History</h2>
             <table ng-repeat="search in wc.searchHistory" class="bordered highlight">
                 <tr>
-                    <td><a href="">{{search.cityName}}</a></td>
+                    <td><a ng-click="wc.submitCity(search.cityName)">{{search.cityName}}</a></td>
                     <td>{{search.timeStamp | date:'medium'}}</td>
                 </tr>
             </table>
