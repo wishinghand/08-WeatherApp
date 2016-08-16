@@ -18,6 +18,7 @@
   "homepage": "https://github.com/wishinghand/08-WeatherApp",
   "devDependencies": {
     "angular": "^1.5.8",
+    "angular-toastr": "^2.0.0",
     "gulp": "^3.9.1",
     "gulp-clean": "^0.3.2",
     "gulp-concat": "^2.6.0",
