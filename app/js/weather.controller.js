@@ -12,14 +12,15 @@
         vm.cityName = '';
         vm.loaded = false;
 
-        //return data object
         vm.weatherInfo;
         vm.searchHistory = [];
+        //return data object
         vm.searchItem = {};
         vm.loaded = false;
 
         vm.submitCity = submitCity;
 
+        // function gets called without 2nd argument sometimes to render it falsy, see if() statement inside
         function submitCity(cityName, addToHistory) {
             vm.loading = true;
             weatherFactory.getWeather(cityName, addToHistory)
@@ -30,6 +31,8 @@
                 vm.weatherInfo = data;
                 vm.cityName = '';
                 vm.loaded = true;
+
+                // falsy argument from function call means this won't happen, stopping certain API requests from being added to history
                 if(addToHistory) {
                     addToSearchHistory(cityName);
                 }

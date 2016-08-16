@@ -9,7 +9,7 @@
     <!-- endinject -->
 </head>
 <body ng-controller="weatherController as wc" >
-    <main class="inputContainer">
+    <main class="inputContainer"> <!-- main box used for sticky footer functionality -->
         <section>
             <h1>Whether the Weather  <i class="medium material-icons">cloud_queue</i></h1>
         </section>
@@ -32,6 +32,7 @@
             </form>
         </section>
 
+        <!-- interpolating the return data from the API request -->
         <section class="row" ng-hide="wc.weatherInfo === undefined">
             <div class="col m4 offset-m1" ng-show="wc.loaded">
                 <h2 class="flow-text">Weather Info for <strong>{{wc.weatherInfo.name}}</strong></h2 class="flow-text">
