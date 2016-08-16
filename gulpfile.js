@@ -18,7 +18,7 @@ gulp.task('clean', function(){
 
 /**JS gulp tasks*****************************************************************/
 gulp.task('concatJs', function(){
-    return gulp.src(['node_modules/angular/angular.min.js', 'node_modules/angular-toastr/dist/angular-toastr.tpls.js', './app/js/**/*.js'])
+    return gulp.src(['node_modules/angular/angular.min.js', 'node_modules/angular-toastr/dist/angular-toastr.tpls.js', './app/js/**/*.js', './app/secrets/keys.value.js'])
     .pipe(concat('build.js'))
     .pipe(gulp.dest('./app/build/'))
 });

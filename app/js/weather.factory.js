@@ -4,11 +4,9 @@
         .factory('weatherFactory', weatherFactory);
 
     // requring HTTP and toastr modules
-    weatherFactory.$inject = ["$http", "toastr"];
+    weatherFactory.$inject = ["$http", "toastr", "keys"];
 
-    function weatherFactory($http, toastr){
-        //storing API key as variable for easy changing later
-        var appID = '8922015c9605f6193b555a64bbaef53e';
+    function weatherFactory($http, toastr, keys){
 
         var service =  {
             getWeather : getWeather
@@ -18,7 +16,7 @@
 
         // actual API call, using imperial units and substring seraching (type=like)
        function getWeather(city){
-            return $http.get('http://api.openweathermap.org/data/2.5/weather?q=' + city + "&APPID=" + appID + "&units=imperial&type=like")
+            return $http.get('http://api.openweathermap.org/data/2.5/weather?q=' + city + "&APPID=" + keys.weather + "&units=imperial&type=accurate")
             .then(weatherSuccess)
             .catch(weatherFail);
         }
