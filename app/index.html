@@ -7,50 +7,67 @@
     <link rel="stylesheet" href="build/build.css">
     <!-- endinject -->
 </head>
-<body ng-controller="weatherController as wc" class="inputContainer">
-    <section>
-        <h1>Whether the Weather</h1>
-    </section>
+<body ng-controller="weatherController as wc" >
+    <div class="inputContainer">
+        <section>
+            <h1 class="flow-text">Whether the Weather</h1>
+        </section>
 
-    <section>
-            <!-- preset button -->
-        <button ng-click="wc.cityName='New York'" class=" waves-effect waves-light btn">New York</button>
-        <button ng-click="wc.cityName='San Diego'" class="btn waves-effect waves-light">San Diego</button>
-        <button ng-click="wc.cityName='District of Columbia'" class="btn waves-effect waves-light">Washington D.C.</button>
-        <button ng-click="wc.cityName='Pittsburgh'" class="btn waves-effect waves-light">Pittsburgh</button>
-        <button ng-click="wc.cityName='Honolulu'" class="btn waves-effect waves-light">Honolulu</button>
+        <section>
+                <!-- preset button -->
+            <button ng-click="wc.cityName='New York'; wc.submitCity(wc.cityName, true)" class="btn deep-orange lighten-1">New York</button>
+            <button ng-click="wc.cityName='San Diego'; wc.submitCity(wc.cityName, true)" class="btn cyan lighten-1">San Diego</button>
+            <button ng-click="wc.cityName='District of Columbia'; wc.submitCity(wc.cityName, true)" class="btn yellow darken-1">Washington D.C.</button>
+            <button ng-click="wc.cityName='Pittsburgh'; wc.submitCity(wc.cityName, true)" class="btn deep-purple accent-1">Pittsburgh</button>
+            <button ng-click="wc.cityName='Honolulu'; wc.submitCity(wc.cityName, true)" class="btn red accent-4">Honolulu</button>
 
-        <form action="javascript:void(0);" name="weatherSearch" ng-submit="wc.submitCity(wc.cityName, true)">
+            <form action="javascript:void(0);" name="weatherSearch" ng-submit="wc.submitCity(wc.cityName, true)">
 
-            <!-- text input -->
-            <input placeholder="Enter a City" type="text" ng-model="wc.cityName">
+                <!-- text input -->
+                <input placeholder="Enter a City" type="text" ng-model="wc.cityName" required>
 
-            <!-- submit button -->
-            <button type="submit" class="btn">Check Weather</button>
-        </form>
-    </section>
+                <!-- submit button -->
+                <button type="submit" class="btn">Check Weather</button>
+            </form>
+        </section>
 
-    <section class="row">
-        <div class="col s4 offset-s1">
-            <h2>Weather Info for {{wc.weatherInfo.name}}</h2>
-            <p>Temperature: {{wc.weatherInfo.main.temp}} °F</p>
-            <p>Pressure (hPa): {{wc.weatherInfo.main.pressure}}</p>
-            <p>Humidity: {{wc.weatherInfo.main.humidity}}%</p>
-            <p>Lowest Temp: {{wc.weatherInfo.main.temp_min}} °F</p>
-            <p>Highest Temp: {{wc.weatherInfo.main.temp_max}} °F</p>
-            <p>Wind Speed (MPH): {{wc.weatherInfo.wind.speed}}</p>
+        <section class="row">
+            <div class="col s4 offset-s1">
+                <h2  class="flow-text">Weather Info for {{wc.weatherInfo.name}}</h2>
+                <p>Temperature: {{wc.weatherInfo.main.temp}} °F</p>
+                <p>Pressure (hPa): {{wc.weatherInfo.main.pressure | number}}</p>
+                <p>Humidity: {{wc.weatherInfo.main.humidity}}%</p>
+                <p>Lowest Temp: {{wc.weatherInfo.main.temp_min}} °F</p>
+                <p>Highest Temp: {{wc.weatherInfo.main.temp_max}} °F</p>
+                <p>Wind Speed (MPH): {{wc.weatherInfo.wind.speed}}</p>
+            </div>
+            <div class="col s4 offset-s2">
+                <h2 class="flow-text">Search History</h2>
+                <table ng-repeat="search in wc.searchHistory" class="bordered highlight">
+                    <tr>
+                        <td><a ng-click="wc.submitCity(search.cityName)">{{search.cityName}}</a></td>
+                        <td>{{search.timeStamp | date:'medium'}}</td>
+                    </tr>
+                </table>
+            </div>
+        </section>
+    </div>
+    <footer class="page-footer brown lighten-5">
+      <div class="container">
+        <div class="row">
+          <div class="col l12 s12">
+            <p class="white-text text-lighten-4"><strong><a href="https://github.com/wishinghand/08-WeatherApp">Local Weather App</a></strong> built by <a href="http://qobbler.com">Jason Land</a> and <a href="https://github.com/sebastianleon">Sebastian Leon</a>.</p>
+          </div>
         </div>
-        <div class="col s4 offset-s2">
-            <h2>Search History</h2>
-            <table ng-repeat="search in wc.searchHistory" class="bordered highlight">
-                <tr>
-                    <td><a ng-click="wc.submitCity(search.cityName)">{{search.cityName}}</a></td>
-                    <td>{{search.timeStamp | date:'medium'}}</td>
-                </tr>
-            </table>
+      </div>
+      <div class="footer-copyright">
+        <div class="container">
+        The source code is licensed
+            <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. The website content
+            is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC ANS 4.0</a>.
         </div>
-    </section>
-
+      </div>
+    </footer>
     <!-- inject:js -->
     <script src="build/build.js"></script>
     <!-- endinject -->

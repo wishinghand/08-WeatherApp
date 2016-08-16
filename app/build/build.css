@@ -6590,5 +6590,15 @@ div[toast].ng-leave.ng-leave-active {
     padding: 15px 15px 15px 50px;
     width: 25em; } }
 
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column; }
+
+main {
+  flex: 1 0 auto; }
+
 .inputContainer {
-  margin: 5%; }
+  margin-top: 5%;
+  margin-left: 5%;
+  margin-right: 5%; }
