@@ -1,6 +1,5 @@
-# Project 8 of Origin Code Academy
-## Weather App using the Open Weather API
-### Technologies Used:
+# Weather App using the Open Weather API
+## Technologies Used:
 - HTML
 - CSS
     + Materalize.css
