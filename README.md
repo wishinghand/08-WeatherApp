@@ -6,10 +6,20 @@
     + SASS
 - Javascript
     + Angular
-    + jquery (for Materialize.css)
-- Gulp
+    + Jquery (for Materialize.css)
+    + Gulp
 
-How to run:
-`npm install`
-then
-`gulp serve`
+## How to Run
+Clone the repo, `cd` into the directory and run:
+```
+npm install
+```
+
+and then serve it with the command:
+```
+gulp serve
+```
+
+## Screenshots
+
+![website interface for a weather checking app](http://i.imgur.com/OaRdb7t.png)
